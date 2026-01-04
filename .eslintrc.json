@@ -1,0 +1,27 @@
+{
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:boundaries/recommended"
+  ],
+  "plugins": ["boundaries"],
+  "rules": {
+    "boundaries/element-types": [
+      2,
+      {
+        "default": "allow",
+        "rules": [
+          {
+            "from": "features/*",
+            "disallow": ["features/*/server", "features/*/schemas"],
+            "message": "Client components cannot import server-only code"
+          },
+          {
+            "from": "app/*",
+            "disallow": ["features/*/server", "features/*/schemas"],
+            "message": "Pages cannot import server-only code directly"
+          }
+        ]
+      }
+    ]
+  }
+}
